@@ -21,9 +21,17 @@ func InitTimer() {
 func SetTimer(name string) {
 	_Timer.timers[name] = time.Now()
 }
+func StopAll() {
+	for k, _ := range _Timer.timers {
+		StopTimer(k)
+	}
+}
 func StopTimer(name string) {
 	if !hasTimer(name) {
 		Error(fmt.Sprintf("Timer Not Has Key: %s", name))
+		return
+	}
+	if _, ok := _Timer.durations[name]; !ok {
 		return
 	}
 	_Timer.durations[name] = time.Since(_Timer.timers[name]).String()
