@@ -12,6 +12,9 @@ func _init() {
 	Config.InitConfig()
 	Log.InitLog()
 	Orm.InitOrm()
+	// use Orm.GetDB to get orm instance
+	//db := Orm.GetDB()
+	//db.HasTable("test")
 	Log.PushNotice("a", "123")
 	Log.PushNotice("b", "abc")
 	Log.PrintNotice()
