@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"github.com/qiankaihua/ginDemo/Boot/Config"
 	"github.com/qiankaihua/ginDemo/Boot/Http"
 	"github.com/qiankaihua/ginDemo/Boot/Log"
@@ -13,7 +12,6 @@ func _init() {
 	Config.InitConfig()
 	Log.InitLog()
 	Orm.InitOrm()
-	orm := Orm.GetDB()
 	Log.PushNotice("a", "123")
 	Log.PushNotice("b", "abc")
 	Log.PrintNotice()
