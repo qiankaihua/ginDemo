@@ -1,0 +1,5 @@
+.idea
+ginDemo
+env.toml
+/Public/
+/log/
