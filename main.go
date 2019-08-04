@@ -22,7 +22,7 @@ func _init() {
 	//Log.PushNotice("a", "123")
 	//Log.PushNotice("b", "abc")
 
-	// SetTimer 设置定时器
+	// SetTimer 设置定时器, 设置为现在开始, 再设置会覆盖之前的时间
 	//Log.SetTimer("test")
 
 	Http.InitHttp()
@@ -30,6 +30,10 @@ func _init() {
 
 	// GetTimer 获取定时器时间
 	//Log.PushNotice("test_timer", Log.GetTimer("test"))
+
+	// 停止计时器, 重复停止按第一次计数
+	//Log.StopTimer("test")
+	//Log.StopAll()
 
 	// 打印 PushNotice 的日志
 	//Log.PrintNotice()
