@@ -26,6 +26,7 @@ func _init() {
 	//Log.SetTimer("test")
 
 	Http.InitHttp()
+	Route.AddStaticRoute()
 	Route.AddApiRoute()
 
 	// GetTimer 获取定时器时间
