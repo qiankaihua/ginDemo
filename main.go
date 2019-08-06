@@ -49,5 +49,5 @@ func _end() {
 func main() {
 	_init()
 	Http.Run()
-	_end()
+	defer _end()
 }
