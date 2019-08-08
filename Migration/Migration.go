@@ -8,21 +8,21 @@ import (
 var Migration *migration
 
 type migration struct {
-	_mode map[string]interface{}
+	_model map[string]interface{}
 }
 
 func InitMigration()  {
 	Migration = new(migration)
-	Migration._mode = make(map[string]interface{})
+	Migration._model = make(map[string]interface{})
 }
 
 func AddMigration(tableName string, model interface{})  {
-	Migration._mode[tableName] = model
+	Migration._model[tableName] = model
 }
 
 func Fresh()  {
 	db := Orm.GetDB()
-	for key, value := range Migration._mode {
+	for key, value := range Migration._model {
 		if db.HasTable(key) {
 			fmt.Println("table", key, "is existed")
 		} else {
@@ -34,7 +34,7 @@ func Fresh()  {
 
 func Refresh()  {
 	db := Orm.GetDB()
-	for key, value := range Migration._mode {
+	for key, value := range Migration._model {
 		db.DropTableIfExists(key)
 		fmt.Println("table", key, "has been dropped successfully")
 		db.Table(key).Set("gorm:table_options", "ENGINE=InnoDB").CreateTable(value)
