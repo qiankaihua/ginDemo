@@ -1,11 +1,15 @@
 package main
 
 import (
+	"fmt"
 	"github.com/qiankaihua/ginDemo/Boot/Config"
 	"github.com/qiankaihua/ginDemo/Boot/Http"
 	"github.com/qiankaihua/ginDemo/Boot/Log"
 	"github.com/qiankaihua/ginDemo/Boot/Orm"
+	"github.com/qiankaihua/ginDemo/Migration"
 	"github.com/qiankaihua/ginDemo/Route"
+	"os"
+	"strings"
 )
 
 func _init() {
@@ -46,8 +50,34 @@ func _end() {
 	Orm.EndOrm()
 }
 
-func main() {
+func _run()  {
 	_init()
 	Http.Run()
 	defer _end()
+}
+
+
+
+func main() {
+	if len(os.Args) > 1 {
+		param := strings.Join(os.Args[1:], "")
+		switch param {
+			case "fresh":
+				_init()
+				Migration.AddTable()
+				Migration.Fresh()
+				defer _end()
+				return
+			case "refresh":
+				_init()
+				Migration.AddTable()
+				Migration.Refresh()
+				defer _end()
+				return
+			default:
+				fmt.Println(param, "is not a command")
+		}
+	} else {
+		_run()
+	}
 }
